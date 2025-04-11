@@ -1,5 +1,3 @@
-from traceback import print_list
-
 grid = {}
 turns = list(range(1, 10))
 

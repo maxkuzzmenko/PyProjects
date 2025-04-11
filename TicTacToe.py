@@ -1,27 +1,29 @@
 grid = {}
 turns = list(range(1, 10))
 
-for cellNumber in turns:
-    grid.setdefault(cellNumber, " ")
+def printGrid():
+    global grid
+    gridpos = 1
+    top = ("     |     |     ")
+    bot = ("_____|_____|_____")
+    for i in range(3):
+        mid = ("  " + grid[gridpos] + "  |  " + grid[gridpos + 1] + "  |  " + grid[gridpos + 2])
+        gridpos += 3
+        printList = [top, mid, bot]
+        if i == 2:
+            printList[2] = printList[0]
+        print(*printList, sep="\n")
+
 def setSymbol(pos, sym):
     global grid
     grid[int(pos)] = sym
-    print(grid)
+    printGrid()
+
+for cellNumber in turns:
+    grid.setdefault(cellNumber, " ")
 
 for turn in turns:
     if turn % 2 != 0:
         setSymbol(input(), "X")
     else:
         setSymbol(input(), "O")
-'''
-a = "X"
-b = ("_____|_____|_____")
-c = ("  " + a + "  |  " + a + "  |  " + a)
-d = ("     |     |     ")
-printlist = (d, c, b)
-for i in range(3):
-    if i == 2:
-        print(*printlist[:-1], d, sep="\n")
-    else:
-        print(*printlist, sep="\n")
-'''
